@@ -10,21 +10,56 @@ class HeaderSection extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Row(
+          Row(
             children: [
-              Icon(Icons.menu_book, color: Colors.teal),
-              SizedBox(width: 8),
-              Text(
-                '공공재',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              Image.asset(
+                  'assets/images/gong_logo.png',
+                  width: 120,
               ),
             ],
           ),
           Row(
             children: [
-              const Icon(Icons.notifications_none),
+              IconButton(
+                icon: const Icon(Icons.notifications),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('알림'),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          ListTile(
+                            leading: Icon(Icons.campaign),
+                            title: Text('새로운 공지가 있습니다.'),
+                          ),
+                          Divider(),
+                          ListTile(
+                            leading: Icon(Icons.chat),
+                            title: Text('댓글이 달렸습니다.'),
+                          ),
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: const Text('닫기'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
               const SizedBox(width: 8),
-              const Icon(Icons.menu),
+              Builder(
+                builder: (context) {
+                  return IconButton(
+                    icon: const Icon(Icons.menu),
+                    onPressed: () => Scaffold.of(context).openDrawer(),
+                  );
+                },
+              ),
             ],
           ),
         ],

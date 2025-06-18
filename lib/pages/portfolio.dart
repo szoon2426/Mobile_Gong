@@ -1,9 +1,13 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:gong_gong_jae/pages/community.dart';
+import 'package:gong_gong_jae/pages/contest.dart';
+import 'package:gong_gong_jae/widgets/signup.dart';
 import '../widgets/header_section.dart';
 import '../widgets/timer_widget.dart';
 import '../widgets/portfolio/study_calendar.dart';
 import '../widgets/portfolio/pie_chart.dart';
+import '../widgets/login.dart';
 
 class PortfolioPage extends StatefulWidget {
   const PortfolioPage({super.key});
@@ -54,14 +58,44 @@ class _PortfolioPageState extends State<PortfolioPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.teal),
+              child: Text('메뉴', style: TextStyle(color: Colors.white, fontSize: 24)),
+            ),
+            ListTile(
+              leading: Icon(Icons.login),
+              title: Text('로그인'),
+              onTap: () {
+                Navigator.pop(context); // 닫기
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.app_registration),
+              title: Text('회원가입'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignupPage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const HeaderSection(),
-
-            /// ✅ portfolio + TimerWidget (오버레이 방식)
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
               child: Row(
@@ -80,20 +114,20 @@ class _PortfolioPageState extends State<PortfolioPage> {
                 ],
               ),
             ),
+            SizedBox(height:20),
             _buildSectionTitle('공부 달력'),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text('현재 0일', style: TextStyle(fontSize: 16)),
+              child: Text('현재 5일', style: TextStyle(fontSize: 16)),
             ),
             StudyCalendar(
               dates: dates,
               months: months,
               studyTimes: studyTimes,
             ),
-
+            SizedBox(height: 20,),
             _buildSectionTitle('키워드별 그래프'),
-            _buildPeriodTabs(),
-            const SizedBox(height: 12),
+            SizedBox(height: 10,),
 
             Expanded(
               child: PieChartWidget(studyTimes: studyTimes),
@@ -111,27 +145,6 @@ class _PortfolioPageState extends State<PortfolioPage> {
         title,
         style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
-    );
-  }
-
-  Widget _buildPeriodTabs() {
-    const periods = ["전체", "1개월이내", "3개월이내"];
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: List.generate(periods.length, (index) {
-        final isSelected = selectedPeriod == index;
-        return GestureDetector(
-          onTap: () => _onPeriodSelected(index),
-          child: Text(
-            periods[index],
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-              decoration: isSelected ? TextDecoration.underline : null,
-            ),
-          ),
-        );
-      }),
     );
   }
 }

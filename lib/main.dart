@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gong_gong_jae/main_navigationBar.dart';
 import 'pages/portfolio.dart'; // PortfolioPage를 가져옴
 import 'pages/contest.dart';
 import 'pages/community.dart';
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PortfolioPage(),
+      home: MainNavigationPage()
+      //home: PortfolioPage(),
       //home: CommunityPage(), // 시작화면을 PortfolioPage로
       //home: ContestPage(),
     );
