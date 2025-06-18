@@ -61,6 +61,7 @@ class TabbedContests extends StatelessWidget {
           imagePath: 'assets/sample.png',
           title: '공모전이름',
           dDay: 'D-12',
+          imgHeight: 100,
         );
       },
     );

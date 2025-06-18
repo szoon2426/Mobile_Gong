@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/header_section.dart';
-import '../widgets/popular_slider.dart';
-import '../widgets/tabbed_contests.dart';
+import '../widgets/contest/popular_slider.dart';
+import '../widgets/contest/tabbed_contests.dart';
 
 class ContestPage extends StatelessWidget {
   const ContestPage({super.key});

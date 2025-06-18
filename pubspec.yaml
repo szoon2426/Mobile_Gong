@@ -34,6 +34,8 @@ dependencies:
   syncfusion_flutter_datagrid: 20.4.38
   cupertino_icons: ^1.0.8
   fl_chart: 0.36.0
+  path_provider: ^2.1.1
+
 
 dev_dependencies:
   flutter_test:

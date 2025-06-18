@@ -4,12 +4,14 @@ class ContestCard extends StatelessWidget {
   final String imagePath;
   final String title;
   final String dDay;
+  final double imgHeight;
 
   const ContestCard({
     super.key,
     required this.imagePath,
     required this.title,
     required this.dDay,
+    required this.imgHeight,
   });
 
   @override
@@ -26,7 +28,7 @@ class ContestCard extends StatelessWidget {
           //AspectRatio(
             //aspectRatio: 1, // 정사각형 이미지
           SizedBox(
-            height: 100,
+            height: imgHeight,
             width: double.infinity,  
             child: Image.asset(
               imagePath,

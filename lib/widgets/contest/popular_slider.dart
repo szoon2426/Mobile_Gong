@@ -40,6 +40,7 @@ class PopularSlider extends StatelessWidget {
                   imagePath: path,
                   title: '공모전 이름',
                   dDay: 'D-12',
+                  imgHeight: 140,
                 );
               },
             );
